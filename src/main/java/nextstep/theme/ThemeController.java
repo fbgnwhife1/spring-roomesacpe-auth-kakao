@@ -1,5 +1,6 @@
 package nextstep.theme;
 
+import nextstep.config.auth.Auth;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class ThemeController {
         this.themeService = themeService;
     }
 
+    @Auth(role = Auth.Role.ADMIN)
     @PostMapping
     public ResponseEntity<Void> createTheme(@RequestBody ThemeRequest themeRequest) {
         Long id = themeService.create(themeRequest);
@@ -33,6 +35,7 @@ public class ThemeController {
         return ResponseEntity.ok().body(results);
     }
 
+    @Auth(role = Auth.Role.ADMIN)
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTheme(@PathVariable Long id) {
         themeService.delete(id);
