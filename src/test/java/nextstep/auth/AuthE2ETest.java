@@ -48,6 +48,23 @@ public class AuthE2ETest {
         assertThat(response.as(TokenResponse.class)).isNotNull();
     }
 
+    @DisplayName("관리자 로그인")
+    @Test
+    public void adminCreate() {
+        TokenRequest body = new TokenRequest("root", "1234");
+        var response = RestAssured
+                .given().log().all()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(body)
+                .when().post("/login/token")
+                .then().log().all()
+                .statusCode(HttpStatus.OK.value())
+                .extract();
+
+        assertThat(response.as(TokenResponse.class)).isNotNull();
+    }
+
+
     @DisplayName("내 정보를 조회한다")
     @Test
     public void showMyInfo() {

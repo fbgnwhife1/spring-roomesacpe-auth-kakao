@@ -26,6 +26,10 @@ public class AuthenticationPrincipalArgumentResolver implements HandlerMethodArg
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         String header = webRequest.getHeader(AUTHORIZATION);
+        if (header == null || header.isEmpty()) {
+            throw new UnAuthorizedException();
+        }
+
         if (!(header.toLowerCase().startsWith(BEARER_TYPE.toLowerCase()))) {
             throw new UnAuthorizedException();
         }

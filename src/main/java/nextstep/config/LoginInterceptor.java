@@ -17,10 +17,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         this.provider = provider;
     }
 
-
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (handler instanceof HandlerMethod == false) {
+        if (!(handler instanceof HandlerMethod)) {
             return true;
         }
 
