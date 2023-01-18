@@ -21,8 +21,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor(jwtTokenProvider))
-                .addPathPatterns("/themes/**");
+        registry.addInterceptor(new AdminInterceptor(jwtTokenProvider))
+                .addPathPatterns("/admin/**");
     }
 
     @Bean

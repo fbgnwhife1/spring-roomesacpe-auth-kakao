@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class LoginInterceptor extends HandlerInterceptorAdapter {
+public class AdminInterceptor extends HandlerInterceptorAdapter {
     private final JwtTokenProvider provider;
 
-    public LoginInterceptor(JwtTokenProvider provider) {
+    public AdminInterceptor(JwtTokenProvider provider) {
         this.provider = provider;
     }
 
