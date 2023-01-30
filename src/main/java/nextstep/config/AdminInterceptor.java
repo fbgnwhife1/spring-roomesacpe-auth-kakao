@@ -40,17 +40,23 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
             throw new UnAuthorizedException();
         }
 
-        String role = auth.toString();
-        if ("USER".equals(role)) {
-            return true;
-        }
+        String userName = provider.getPrincipal(accessToken);
 
+        String role = auth.toString();
         if ("ADMIN".equals(role)) {
-            if (provider.getPrincipal(accessToken).equals("admin")) {
+            if (userName.equals("admin")) {
                 return true;
             }
 
             throw new UnAuthorizedException();
+        }
+
+        if ("admin".equals(userName)) {
+            return true;
+        }
+
+        if ("USER".equals(role)) {
+            return true;
         }
 
         return super.preHandle(request, response, handler);

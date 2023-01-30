@@ -1,4 +1,4 @@
-package nextstep.auth.admin;
+package nextstep.admin;
 
 import nextstep.config.auth.Auth;
 import nextstep.schedule.ScheduleRequest;
